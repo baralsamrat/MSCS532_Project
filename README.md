@@ -147,6 +147,70 @@ if __name__ == "__main__":
     # Schedule the update function to run periodically
 ```
 
+
+
+### Demonstration of Key Operations
+The provided test script demonstrates how to add users, establish product relationships, and generate recommendations. Running this script will output the top product recommendation based on the scores assigned.
+
+```python
+# Test script demonstrating functionality
+user_table = UserHashTable()
+product_graph = Graph()
+recommendation_queue = RecommendationQueue()
+
+# Adding users
+user1 = UserProfile(user_id="user1", preferences=["productA", "productB"])
+user2 = UserProfile(user_id="user2", preferences=["productB", "productC"])
+user_table.add_user(user1)
+user_table.add_user(user2)
+
+# Adding product relationships
+product_graph.add_edge("productA", "productB")
+product_graph.add_edge("productB", "productC")
+
+# Adding recommendations
+recommendation_queue.add_recommendation(Recommendation("productA", 5))
+recommendation_queue.add_recommendation(Recommendation("productB", 3))
+recommendation_queue.add_recommendation(Recommendation("productC", 8))
+
+# Retrieving the top recommendation
+top_recommendation = recommendation_queue.get_top_recommendation()
+print(f"Top Recommendation: {top_recommendation.product_id} with score {top_recommendation.score}")
+```
+
+### Challenges Encountered
+- **Integration of Data Structures**: Ensuring the user profiles, product relationships, and recommendations work cohesively posed initial challenges. I tackled this by defining clear interfaces for each data structure, allowing easy data flow.
+  
+- **Scoring System**: Developing a straightforward and effective scoring mechanism for recommendations required careful thought. I implemented a basic scoring method, which can be refined later.
+
+### Solutions Implemented
+- **Modular Design**: Each data structure was designed with clear responsibilities, making future expansions easier.
+- **Error Handling**: Basic error handling was included to manage cases such as duplicate users or missing product relationships.
+
+### Next Steps
+1. **Enhance User Interaction Tracking**: Implement a more sophisticated method for tracking user interactions and preferences to improve recommendation accuracy.
+2. **Advanced Recommendation Algorithms**: Explore collaborative filtering and content-based filtering techniques for generating more personalized recommendations.
+3. **User Interface Development**: Develop a simple UI to facilitate user interaction with the recommendation system.
+4. **Testing and Validation**: Conduct extensive testing to validate functionality, performance, and scalability as the application grows.
+
+## GitHub Repository
+The full codebase, including the implementation of data structures and the test script, is available in the following GitHub repository: [https://github.com/baralsamrat/MSCS532_Project](#)
+### Phase 3: Optimization, Scaling, and Final Evaluation 
+
+1. Optimization of Data Structures
+Analyze performance and identify inefficiencies.
+Implement optimizations like caching frequently accessed user profiles.
+
+2. Scaling for Large Datasets
+Modify implementations to manage larger datasets effectively, ensuring acceptable performance levels.
+
+3. Advanced Testing and Validation
+Develop comprehensive test cases and perform stress testing to evaluate robustness.
+
+4. Final Evaluation and Performance Analysis
+Compare the final implementation with the initial proof of concept, discussing strengths, limitations, and areas for improvement.
+
+
 ## References
 1. Igboanusi et al. (2024). BOMS: blockchain-enabled organ matching system. *Scientific Reports*.
 2. Al-Thnaibat et al. (2024). Addressing Kidney Transplant Shortage: The Potential of Kidney Paired Exchanges in Jordan. *Journal of Transplantation*.
