@@ -4,7 +4,8 @@
 ```diff
 - Project Phase 1 : September 08, 2024
 - Project Phase 2 : September 23, 2024
-+ Project Phase 3 : Current
+- Project Phase 3 : September 29, 2024
++ Project Phase 4 : .....UPDATING.....
 ```
 > Samrat Baral
 > Algorithm and Data Structures
@@ -12,7 +13,7 @@
 # Organ Matching and Donation Networks
 
 
-## Project Phase 1 Deliverable 1: Data Structure Design and Implementation
+## Project Phase 1 Deliverable: Data Structure Design and Implementation
 ## Application Context
 Organ donation is a crucial area in healthcare, potentially saving countless lives. The challenge is to efficiently match donors with recipients based on various criteria, including blood type, HLA matching, geographic proximity, and urgency. An effective algorithm can leverage real-time data for optimal matching, ensuring timely transplants as the demand for organs increases.
 
@@ -531,6 +532,157 @@ Here are more detailed future ideas on how to implement the future enhancements 
   def calculate_distance(location1, location2):
       return geodesic(location1, location2).miles
   ```
+
+  Integrating blockchain with machine learning (ML) in an organ matching and donation network can provide enhanced security, data integrity, and improved decision-making through predictive analytics. Below is a structured approach to implement this integration along with relevant source references for your research.
+
+### Implementation Overview
+
+#### 1. Objectives
+- **Blockchain**: Ensure secure and transparent storage of donor and recipient data.
+- **Machine Learning**: Use historical data to predict successful matches based on various features.
+
+#### 2. System Architecture
+- **Blockchain Layer**: Manages donor and recipient data securely.
+- **ML Model Layer**: Predicts match success and recommends optimal matches.
+- **API Layer**: Interfaces between the blockchain, ML model, and frontend application.
+
+### Implementation Steps
+
+#### Step 1: Blockchain Setup
+
+**Smart Contract for Organ Donation** (as previously outlined).
+
+```python
+contract OrganDonation {
+    struct Donor {
+        string id;
+        string bloodType;
+        string hlaType;
+        address owner;
+    }
+
+    struct Recipient {
+        string id;
+        string bloodType;
+        uint urgency;
+        address owner;
+    }
+
+    mapping(string => Donor) public donors;
+    mapping(string => Recipient) public recipients;
+
+    event DonorRegistered(string id);
+    event RecipientRegistered(string id);
+
+    function registerDonor(string memory _id, string memory _bloodType, string memory _hlaType) public {
+        donors[_id] = Donor(_id, _bloodType, _hlaType, msg.sender);
+        emit DonorRegistered(_id);
+    }
+
+    function registerRecipient(string memory _id, string memory _bloodType, uint _urgency) public {
+        recipients[_id] = Recipient(_id, _bloodType, _urgency, msg.sender);
+        emit RecipientRegistered(_id);
+    }
+}
+```
+
+**Deploy the Smart Contract** using tools like Truffle or Hardhat.
+
+#### Step 2: Machine Learning Model Development
+
+**Predictive Model Example** (using Scikit-learn):
+
+1. **Data Preparation**: Gather historical data on donors and recipients.
+
+```python
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
+
+# Load dataset
+data = pd.read_csv('donor_recipient_data.csv')
+X = data[['blood_type', 'urgency', 'distance']]  # Features
+y = data['match_success']  # Target variable
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Train model
+model = RandomForestClassifier()
+model.fit(X_train, y_train)
+
+# Predictions
+y_pred = model.predict(X_test)
+print("Accuracy:", accuracy_score(y_test, y_pred))
+```
+
+2. **Integration with Blockchain**: After matching is predicted, save the results back to the blockchain.
+
+```python
+from web3 import Web3
+
+# Connect to Ethereum network
+w3 = Web3(Web3.HTTPProvider('http://localhost:8545'))
+contract = w3.eth.contract(address='YOUR_CONTRACT_ADDRESS', abi='YOUR_ABI')
+
+def save_match_result(donor_id, recipient_id, match_success, private_key):
+    tx = contract.functions.saveMatchResult(donor_id, recipient_id, match_success).buildTransaction({
+        'chainId': 1,
+        'gas': 70000,
+        'gasPrice': w3.toWei('20', 'gwei'),
+        'nonce': w3.eth.getTransactionCount(w3.eth.account.privateKeyToAccount(private_key).address),
+    })
+    
+    signed_tx = w3.eth.account.signTransaction(tx, private_key)
+    w3.eth.sendRawTransaction(signed_tx.rawTransaction)
+```
+
+#### Step 3: API Development
+
+Develop a RESTful API (using Flask or FastAPI) to interface with both the blockchain and ML model. 
+
+```python
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+@app.route('/match', methods=['POST'])
+def match():
+    data = request.json
+    # Predict match using the ML model
+    match_success = model.predict([data['blood_type'], data['urgency'], data['distance']])
+    
+    # Save result to blockchain
+    save_match_result(data['donor_id'], data['recipient_id'], match_success)
+    
+    return jsonify({'match_success': match_success.tolist()})
+
+if __name__ == '__main__':
+    app.run(debug=True)
+```
+
+### Relevant Research Papers
+
+Here are some scholarly sources that discuss the integration of blockchain and machine learning, specifically in healthcare and data management contexts:
+
+1. **"Blockchain Technology in Health Care: A Systematic Review"**  
+   Link: [PubMed](https://pubmed.ncbi.nlm.nih.gov/31904904/)
+   
+2. **"A Survey on Blockchain Technology and Its Applications in Healthcare"**  
+   Link: [IEEE Xplore](https://ieeexplore.ieee.org/document/8474692)
+   
+3. **"Machine Learning and Blockchain for Healthcare Data Management"**  
+   Link: [MDPI](https://www.mdpi.com/2076-3417/10/8/2825)
+
+4. **"Combining Machine Learning and Blockchain for Health Data Management"**  
+   Link: [Springer](https://link.springer.com/article/10.1007/s10115-021-00505-2)
+
+5. **"The Role of Machine Learning in Blockchain Technology: A Comprehensive Survey"**  
+   Link: [ResearchGate](https://www.researchgate.net/publication/344015459)
+
+### Conclusion
+
+By integrating blockchain and machine learning, you create a secure, transparent, and intelligent organ matching system. This approach not only enhances data security but also improves the efficiency of the matching process. The provided research papers will offer deeper insights into this intersection of technologies.
 
 - **Integration with Mapping APIs:** Use services like Google Maps API to retrieve real-time data about distances and estimated travel times.
 
