@@ -831,7 +831,7 @@ if __name__ == "__main__":
 
 ## Project Phase 4: Final Report and Presentation
 
-### Requirements
+### Installation
 
 **Run as Adminstrator** 
 ```powershell
@@ -951,6 +951,14 @@ deactivate # deactivate the enviroment
 
 ---
 
+### Google Collab: Use cloud CPU & GPU performance
+
+> ### Python Notebook:  [OrganDonation.ipynb](/OrganDonation.ipynb)
+
+
+### Deploy Smart Contract: [example](https://medium.com/@arashtad/how-to-deploy-a-smart-contract-using-python-web3-tools-a-full-coverage-59e6c2ad3f9f)
+
+
 
 TODO: Researching ... 
 
@@ -978,6 +986,7 @@ https://www.healthit.gov/topic/oncs-cures-act-final-rule
 12. Agbo CC, Mahmoud QH, Eklund JM. Blockchain Technology in Healthcare: A Systematic Review. Healthcare. 2019; 7(2):56. https://doi.org/10.3390/healthcare7020056
 13. Author links open overlay panelS.M Campbell, et al. “Defining Quality of Care.” Social Science & Medicine, Pergamon, 5 Oct. 2000, https://www.sciencedirect.com/science/article/abs/pii/S0277953600000575.
 14. Learn How Organ Allocation Works - OPTN. Organ Procurement and Transplantation Network. (2024). https://optn.transplant.hrsa.gov/patients/about-transplantation/how-organ-allocation-works/ 
+15. Arashtad. “How to Deploy a Smart Contract Using Python Web3 Tools: A Full Coverage.” Medium, Medium, 19 Feb. 2024, https://medium.com/@arashtad/how-to-deploy-a-smart-contract-using-python-web3-tools-a-full-coverage-59e6c2ad3f9f. 
 
 
 ----
