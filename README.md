@@ -959,10 +959,7 @@ Dataset:  [HRSA.gov](https://data.hrsa.gov/data/download?data=organ#organ)
 
 
 ### Deploy Smart Contract: [example](https://medium.com/@arashtad/how-to-deploy-a-smart-contract-using-python-web3-tools-a-full-coverage-59e6c2ad3f9f)
-
-
-
-TODO: Researching ... 
+ 
 
 ## Conclusion
 
