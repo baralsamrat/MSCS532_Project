@@ -2,7 +2,6 @@
 theme: ../
 favicon: 'https://draculatheme.com/static/img/favicon.ico'
 ---
-
     
 # Dracula Theme
 
