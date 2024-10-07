@@ -3,9 +3,10 @@
 - Project Phase 1 : September 08, 2024
 - Project Phase 2 : September 23, 2024
 - Project Phase 3 : September 29, 2024
-- Project Phase 4 : October 6, 2024 
+- Project Phase 4 : October 6, 2024  
 + Project Phase 5 : ... Editing  ...
 ```
+Phase 4 : [Record Part 1](https://drive.google.com/file/d/1U1_99waF11qRy3dhwC8TdHKwBlgwsWtA/view?usp=sharing)  | [Record Part 2](https://drive.google.com/file/d/1Qpv9BQaBpO1xcCtD9csv5TiBgJDkRr8H/view?usp=sharing)
 > Samrat Baral  
 > Algorithm and Data Structures
 
